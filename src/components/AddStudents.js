@@ -2,7 +2,6 @@ import {
   ChakraProvider,
   FormControl,
   FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   extendTheme,
@@ -11,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import "../App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { collectStudentInput, collectStudentList } from "../action/index";
 const activeLabelStyles = {
   transform: "scale(0.85) translateY(-24px)",
 };
@@ -48,45 +49,77 @@ export const theme = extendTheme({
   },
 });
 export default function AddStudents() {
-  return (
-    <ChakraProvider theme={theme}>
-      <Container maxW="container.sm" className="Add-students">
-        <Box p={8}>
-          <FormControl variant="floating" id="first-name" isRequired isInvalid>
-            <Input
-              placeholder=" "
-              className="text-white"
-              style={{ color: "#ffe60a", boxShadow: "0 0 0 1px #ffffff" , borderColor:'#ffeb3b'}}
-            />
-            <FormLabel>First name</FormLabel>
-            <FormHelperText>Keep it very short and sweet!</FormHelperText>
-            <FormErrorMessage style={{ color: "#d7c522" }}>
-              Student First name is invalid
-            </FormErrorMessage>
-          </FormControl>
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.reducer1);
 
-          <FormControl
-            variant="floating"
-            id="first-name"
-            isRequired
-            isInvalid
-            className="mt-3"
+  const collectStudentInput = () => {
+    dispatch(collectStudentList())
+
+  }
+  return (
+    <>
+      <ChakraProvider theme={theme}>
+        <Container maxW="container.sm" className="Add-students">
+          <Box p={8}>
+            <FormControl
+              variant="floating"
+              id="first-name"
+              isRequired
+              isInvalid
+            >
+              <Input
+                placeholder=" "
+                className="text-white"
+                style={{
+                  color: "#ffe60a",
+                  boxShadow: "0 0 0 1px #ffffff",
+                  borderColor: "#ffeb3b",
+                }}
+                onChange={(event) => collectStudentInput(event.target.value)}
+              />
+              <FormLabel>First name</FormLabel>
+              <FormErrorMessage style={{ color: "#d7c522" }}>
+                Student First name is invalid
+              </FormErrorMessage>
+            </FormControl>
+
+            <FormControl
+              variant="floating"
+              id="first-name"
+              isRequired
+              isInvalid
+              className="mt-3"
+            >
+              <Input
+                placeholder=" "
+                className="text-white"
+                style={{
+                  color: "#ffe60a",
+                  boxShadow: "0 0 0 1px #ffffff",
+                  borderColor: "#ffeb3b",
+                }}
+                onChange={(event) => collectStudentInput(event.target.value)}
+              />
+              <FormLabel>Last name</FormLabel>
+              <FormErrorMessage style={{ color: "#d7c522" }}>
+                Student Last name is invalid
+              </FormErrorMessage>
+            </FormControl>
+          </Box>
+          <Button
+            colorScheme="yellow"
+            className="mx-4"
+            onClick={() => dispatch(collectStudentList())}
+            
           >
-            <Input
-              placeholder=" "
-              className="text-white"
-              style={{ color: "#ffe60a", boxShadow: "0 0 0 1px #ffffff",  borderColor:'#ffeb3b' }}
-            />
-            <FormLabel>Last name</FormLabel>
-            <FormErrorMessage style={{ color: "#d7c522" }}>
-              Student Last name is invalid
-            </FormErrorMessage>
-          </FormControl>
-        </Box>
-        <Button colorScheme="yellow" className="mx-4">
-          Add Student
-        </Button>
-      </Container>
-    </ChakraProvider>
+            Add Student
+          </Button>
+
+          <div className="text-white">{state.firstName}</div>
+          <div className="text-white">{state.lastName}</div>
+
+        </Container>
+      </ChakraProvider>
+    </>
   );
 }
