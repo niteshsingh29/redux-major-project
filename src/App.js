@@ -1,11 +1,15 @@
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import AddStudents from "./components/AddStudents";
+import Landingpage from "./components/Landingpage";
 
 function App() {
   return (
-    <div className="App">
-    hello world
-
-    </div>
+    <>
+      <Navbar />
+      <Landingpage />
+      <AddStudents />
+    </>
   );
 }
 
