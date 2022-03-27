@@ -9,9 +9,15 @@ import {
   Container,
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import "../App.css";
+import "../../App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { collectStudentInput, collectStudentList } from "../action/index";
+// import { collectStudentList } from "../../action/index";
+import { useState } from "react";
+import Typed from "react-typed";
+import { Heading } from "@chakra-ui/react";
+//import font__theme from "../Theme/Font";
+import { addStudent } from "../../StateManagement/reducer1";
+import Landingpage from "../landingpage/Landingpage";
 const activeLabelStyles = {
   transform: "scale(0.85) translateY(-24px)",
 };
@@ -49,17 +55,25 @@ export const theme = extendTheme({
   },
 });
 export default function AddStudents() {
+  const [first__Name, setfirst__Name] = useState("");
+  const [last__Name, setlast__Name] = useState("");
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.reducer1);
+  const student__list = useSelector((state) => state.students.value);
 
-  const collectStudentInput = () => {
-    dispatch(collectStudentList())
-
-  }
+  console.log(first__Name, last__Name); // to  add students name
   return (
     <>
+      <Landingpage />
       <ChakraProvider theme={theme}>
-        <Container maxW="container.sm" className="Add-students">
+        <Container
+          maxW="container.sm"
+          className="Add-students py-5"
+          style={{
+            backgroundColor: "rgba (255, 0, 0, 0.5)",
+            boxShadow: "1px 3px 8px 1px #b8ad49",
+            webkitBoxShadow: "1px 3px 8px 1px #b8ad49",
+          }}
+        >
           <Box p={8}>
             <FormControl
               variant="floating"
@@ -75,7 +89,8 @@ export default function AddStudents() {
                   boxShadow: "0 0 0 1px #ffffff",
                   borderColor: "#ffeb3b",
                 }}
-                onChange={(event) => collectStudentInput(event.target.value)}
+                value={first__Name}
+                onChange={(e) => setfirst__Name(e.target.value)}
               />
               <FormLabel>First name</FormLabel>
               <FormErrorMessage style={{ color: "#d7c522" }}>
@@ -98,7 +113,8 @@ export default function AddStudents() {
                   boxShadow: "0 0 0 1px #ffffff",
                   borderColor: "#ffeb3b",
                 }}
-                onChange={(event) => collectStudentInput(event.target.value)}
+                value={last__Name}
+                onChange={(e) => setlast__Name(e.target.value)}
               />
               <FormLabel>Last name</FormLabel>
               <FormErrorMessage style={{ color: "#d7c522" }}>
@@ -109,17 +125,42 @@ export default function AddStudents() {
           <Button
             colorScheme="yellow"
             className="mx-4"
-            onClick={() => dispatch(collectStudentList())}
-            
+            onClick={() => {
+              dispatch(
+                addStudent({
+                  id: student__list[student__list.length - 1].id + 1,
+                  first__Name,
+                  last__Name,
+                })
+              );
+            }}
           >
             Add Student
           </Button>
-
-          <div className="text-white">{state.firstName}</div>
-          <div className="text-white">{state.lastName}</div>
-
         </Container>
       </ChakraProvider>
+      <Heading isTruncated fontSize="40px">
+        <Typed
+          strings={["Add Students Data in 1 Click!"]}
+          typeSpeed={35}
+          backSpeed={22}
+          loop
+          className="py-1"
+          style={{
+            position: "absolute",
+            top: "30%",
+            left: "60%",
+            color: "white",
+            backgroundColor: "rgba (255, 0, 0, 0.5)",
+            boxShadow: "1px 3px 8px 1px #b8ad49",
+            webkitBoxShadow: "1px 3px 8px 1px #b8ad49",
+            bgGradient: "linear(to-l, #7928CA, #FF0080)",
+            bgClip: "text",
+            fontSize: "2xl",
+            fontWeight: "extrabold",
+          }}
+        />
+      </Heading>
     </>
   );
 }

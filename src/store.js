@@ -1,5 +1,10 @@
-import {createStore} from 'redux';
-import rootReducer from "./reducer/index"
+import {configureStore} from '@reduxjs/toolkit'
+import userReducer from './StateManagement/reducer1'
 
-const store = createStore(rootReducer) 
+const store = configureStore({
+    reducer: {
+
+        students : userReducer,
+    }
+}) 
 export default store;

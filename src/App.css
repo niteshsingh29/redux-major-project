@@ -7,8 +7,10 @@
 .Add-students {
   position: absolute;
   top: 15%;
-  left: 15%
+  left: 15%;
 }
 .AddstudentBtn {
   box-shadow: 0 0 0 1px #8f8d8d;
 }
+
+
