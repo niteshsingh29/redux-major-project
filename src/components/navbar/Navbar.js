@@ -42,7 +42,7 @@ console.log(removed)
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white" aria-current="page" to="/">
+                <Link className="nav-link text-white" aria-current="page" to="/marks">
                   Student Marks Data
                 </Link>
               </li>

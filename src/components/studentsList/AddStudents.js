@@ -1,7 +1,6 @@
 import {
   ChakraProvider,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   extendTheme,
@@ -11,11 +10,9 @@ import {
 import { Button } from "@chakra-ui/react";
 import "../../App.css";
 import { useSelector, useDispatch } from "react-redux";
-// import { collectStudentList } from "../../action/index";
 import { useState } from "react";
 import Typed from "react-typed";
 import { Heading } from "@chakra-ui/react";
-//import font__theme from "../Theme/Font";
 import { addStudent } from "../../StateManagement/reducer1";
 import Landingpage from "../landingpage/Landingpage";
 const activeLabelStyles = {
@@ -61,6 +58,8 @@ export default function AddStudents() {
   const student__list = useSelector((state) => state.students.value);
 
   console.log(first__Name, last__Name); // to  add students name
+
+
   return (
     <>
       <Landingpage />
@@ -93,9 +92,9 @@ export default function AddStudents() {
                 onChange={(e) => setfirst__Name(e.target.value)}
               />
               <FormLabel>First name</FormLabel>
-              <FormErrorMessage style={{ color: "#d7c522" }}>
+              {/* <FormErrorMessage style={{ color: "#d7c522" }}>
                 Student First name is invalid
-              </FormErrorMessage>
+              </FormErrorMessage> */}
             </FormControl>
 
             <FormControl
@@ -103,7 +102,7 @@ export default function AddStudents() {
               id="first-name"
               isRequired
               isInvalid
-              className="mt-3"
+              className="mt-5"
             >
               <Input
                 placeholder=" "
@@ -117,9 +116,9 @@ export default function AddStudents() {
                 onChange={(e) => setlast__Name(e.target.value)}
               />
               <FormLabel>Last name</FormLabel>
-              <FormErrorMessage style={{ color: "#d7c522" }}>
+              {/* <FormErrorMessage style={{ color: "#d7c522" }}>
                 Student Last name is invalid
-              </FormErrorMessage>
+              </FormErrorMessage> */}
             </FormControl>
           </Box>
           <Button

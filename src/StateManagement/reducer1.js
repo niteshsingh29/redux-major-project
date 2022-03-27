@@ -12,6 +12,8 @@ export const studentSlice = createSlice({
       state.value.push(action.payload)
     },
   },
-});
+},
+
+);
 export const { addStudent } = studentSlice.actions;
 export default studentSlice.reducer;
