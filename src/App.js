@@ -17,7 +17,8 @@ function App() {
         <Navbar />
         {isAuthenticated && <Login setAuthenticated={setAuthenticated} />}
         <Routes>
-          <Route path="/AddStudents" element={<AddStudents />} />
+          <Route exact path="/AddStudents" element={<AddStudents />} />
+          <Route exact path="/AddStudents/:id" element={<AddStudents />} />
           <Route path="/AddMarks" element={<AddStudentsMark />} />
           <Route path="/Home" element={<TypingAnimation />} />
 

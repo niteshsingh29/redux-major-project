@@ -70,7 +70,7 @@ const AddStudentsMark = () => {
             onClick={() => {
               dispatch__marks(
                 addStudentMarks({
-                  id: state__2[state__2.length - 1].id + 1,
+                  id: state__2.length ?  state__2[state__2.length - 1].id + 1 : 0,
                   English: english,
                   Math: math,
                   Physics: physics,

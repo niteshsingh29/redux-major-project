@@ -37,7 +37,7 @@ console.log(removed_1)
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-white" aria-current="page" to="/StudentsList">
-                  Student List<span className="badge bg-warning text-dark mx-1">{removed[0].id}</span>
+                  Student List<span className="badge bg-warning text-dark mx-1">{removed.length ? removed[0].id + 1: 0}</span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -47,7 +47,7 @@ console.log(removed_1)
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-white" aria-current="page" to="/marks">
-                  Student Marks Data<span className="badge bg-warning text-dark mx-1">{removed_1[0].id}</span>
+                  Student Marks Data<span className="badge bg-warning text-dark mx-1">{removed_1.length ? removed_1[0]?.id + 1: 0}</span>
                 </Link>
               </li>
             </ul>

@@ -127,7 +127,7 @@ export default function AddStudents() {
             onClick={() => {
               dispatch(
                 addStudent({
-                  id: student__list[student__list.length - 1].id + 1,
+                  id: student__list.length ? student__list[student__list.length - 1 ].id + 1 : 0,
                   first__Name,
                   last__Name,
                 })
