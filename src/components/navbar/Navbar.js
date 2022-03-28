@@ -6,6 +6,10 @@ const Navbar = () => {
 console.log(state_counter)
 let removed = state_counter.slice(-1);
 console.log(removed)
+const students_counter = useSelector((state) => state.StudentMarks.value)
+console.log(students_counter)
+let removed_1 = students_counter.slice(-1)
+console.log(removed_1)
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top" style={{boxShadow: '0px 8px 8px -6px #cfc678'}}>
@@ -43,7 +47,7 @@ console.log(removed)
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-white" aria-current="page" to="/marks">
-                  Student Marks Data
+                  Student Marks Data<span className="badge bg-warning text-dark mx-1">{removed_1[0].id}</span>
                 </Link>
               </li>
             </ul>

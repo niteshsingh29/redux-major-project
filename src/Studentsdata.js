@@ -9,4 +9,5 @@ export const StudentsMarksList = [{
     English: 0,
     Math: 0,
     Physics: 0,
+    Name: "Nitesh"
 }]
